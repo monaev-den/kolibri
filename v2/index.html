@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Кодировка и адаптивность -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Колибри Аптека — система управления аптечным бизнесом на платформе 1С:Предприятие 8">
+    <meta name="keywords" content="аптека, 1С, учёт, Колибри, программа для аптеки">
+    <title>Колибри Аптека — Система управления аптечным бизнесом</title>
+
+    <!-- Локальные стили — работает без интернета -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+
+    <!-- ==================== ШАПКА / НАВИГАЦИЯ ==================== -->
+    <header class="header" id="header">
+        <div class="container header__inner">
+            <!-- Логотип -->
+            <a href="#hero" class="logo">
+                <img src="assets/images/logo.svg" alt="Колибри" class="logo__img">
+                <span class="logo__text">Колибри <strong>Аптека</strong></span>
+            </a>
+
+            <!-- Мобильное меню (бургер) -->
+            <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+
+            <!-- Основная навигация — якорные ссылки для плавного скролла -->
+            <nav class="nav" id="nav">
+                <ul class="nav__list">
+                    <li><a href="#about" class="nav__link">О системе</a></li>
+                    <li><a href="#features" class="nav__link">Функции</a></li>
+                    <li><a href="#advantages" class="nav__link">Преимущества</a></li>
+                    <li><a href="#documents" class="nav__link">Документы</a></li>
+                    <li><a href="#videos" class="nav__link">Видео</a></li>
+                    <li><a href="#contacts" class="nav__link nav__link--cta">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ==================== HERO — первый экран ==================== -->
+        <section class="hero" id="hero">
+            <div class="hero__bg"></div>
+            <div class="container hero__inner">
+                <div class="hero__content" data-animate>
+                    <span class="hero__badge">1С:Предприятие 8</span>
+                    <h1 class="hero__title">Система управления<br>аптечным бизнесом</h1>
+                    <p class="hero__subtitle">
+                        Повысьте эффективность аптеки, сократите затраты на обработку информации
+                        и улучшите качество обслуживания клиентов
+                    </p>
+                    <div class="hero__actions">
+                        <a href="#contacts" class="btn btn--primary">Связаться с нами</a>
+                        <a href="#advantages" class="btn btn--outline">Узнать больше</a>
+                    </div>
+                    <!-- Быстрые ссылки на прайс-листы (как на оригинальном сайте) -->
+                    <div class="hero__prices">
+                        <a href="#" class="hero__price-link">📋 Прайс-лист Курской области</a>
+                        <a href="#" class="hero__price-link">📋 Прайс-лист других регионов РФ</a>
+                    </div>
+                </div>
+                <div class="hero__visual" data-animate>
+                    <img src="assets/images/hero-illustration.svg" alt="Управление аптекой" class="hero__image">
+                </div>
+            </div>
+            <!-- Индикатор прокрутки вниз -->
+            <a href="#about" class="hero__scroll" aria-label="Прокрутить вниз">
+                <span></span>
+            </a>
+        </section>
+
+        <!-- ==================== О СИСТЕМЕ ==================== -->
+        <section class="section about" id="about">
+            <div class="container">
+                <div class="section__header" data-animate>
+                    <span class="section__label">О продукте</span>
+                    <h2 class="section__title">Что даёт внедрение «Колибри Аптека»</h2>
+                </div>
+                <div class="about__grid">
+                    <div class="about__card" data-animate>
+                        <div class="about__icon">📈</div>
+                        <h3>Эффективность</h3>
+                        <p>Увеличит эффективность работы вашей аптеки и производительность труда</p>
+                    </div>
+                    <div class="about__card" data-animate>
+                        <div class="about__icon">💰</div>
+                        <h3>Экономия</h3>
+                        <p>Сократит затраты на регистрацию и обработку поступающей информации</p>
+                    </div>
+                    <div class="about__card" data-animate>
+                        <div class="about__icon">👥</div>
+                        <h3>Контроль</h3>
+                        <p>Объективная оценка работы персонала и оперативный контроль финансовых потоков</p>
+                    </div>
+                    <div class="about__card" data-animate>
+                        <div class="about__icon">✅</div>
+                        <h3>Решения</h3>
+                        <p>Позволит принимать верные управленческие решения на основе актуальных данных</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== РАБОТА С ТОВАРНЫМИ ЗАПАСАМИ ==================== -->
+        <section class="section features" id="features">
+            <div class="container">
+                <div class="section__header" data-animate>
+                    <span class="section__label">Функционал</span>
+                    <h2 class="section__title">Работа с товарными запасами</h2>
+                    <p class="section__desc">
+                        Основной и самый обширный функционал для любого аптечного предприятия
+                    </p>
+                </div>
+                <div class="features__timeline">
+                    <div class="features__item" data-animate>
+                        <div class="features__num">01</div>
+                        <h3>Приход и хранение</h3>
+                        <p>Учёт поступления товара, контроль сроков годности и условий хранения</p>
+                    </div>
+                    <div class="features__item" data-animate>
+                        <div class="features__num">02</div>
+                        <h3>Расход товара</h3>
+                        <p>Оформление продаж, резервирование для клиентов, гибкая система дисконтирования</p>
+                    </div>
+                    <div class="features__item" data-animate>
+                        <div class="features__num">03</div>
+                        <h3>Отчётность</h3>
+                        <p>Аналитические и маркетинговые исследования, обширная отчётность</p>
+                    </div>
+                    <div class="features__item" data-animate>
+                        <div class="features__num">04</div>
+                        <h3>Бухгалтерия</h3>
+                        <p>Обмен данными с бухгалтерией, учёт по нескольким юрлицам</p>
+                    </div>
+                    <div class="features__item" data-animate>
+                        <div class="features__num">05</div>
+                        <h3>Инвентаризация</h3>
+                        <p>Проведение инвентаризации существующих запасов</p>
+                    </div>
+                    <div class="features__item" data-animate>
+                        <div class="features__num">06</div>
+                        <h3>Заявки поставщикам</h3>
+                        <p>Формирование заявок на основании товарной потребности</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ПРЕИМУЩЕСТВА ==================== -->
+        <section class="section advantages" id="advantages">
+            <div class="container">
+                <div class="section__header" data-animate>
+                    <span class="section__label">Почему мы</span>
+                    <h2 class="section__title">Почему выбирают «Колибри Аптека»</h2>
+                </div>
+                <div class="advantages__grid">
+                    <!-- 15 преимуществ с оригинального сайта, сгруппированы компактно -->
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Работает на платформе <strong>1С:Предприятие 8</strong> — самой распространённой в России</p>
+                    </div>
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Спроектирована с учётом требований реальных аптек и аптечных сетей</p>
+                    </div>
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Быстрое развёртывание и первоначальная настройка</p>
+                    </div>
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Удобный и интуитивный интерфейс</p>
+                    </div>
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Загрузка накладных от <strong>40+ поставщиков</strong> (txt, dbf, xml, xls и др.)</p>
+                    </div>
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Автообновление номенклатуры: новый товар, налоговые ставки, признак ЖВ</p>
+                    </div>
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Учёт по нескольким юрлицам и объектам налогообложения</p>
+                    </div>
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Контроль препаратов с остаточным/просроченным сроком и фальсифицированных серий</p>
+                    </div>
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Подготовка данных для мониторинга цен с выгрузкой на сайт РосЗдравНадзора</p>
+                    </div>
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Резервирование товара для клиента</p>
+                    </div>
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Гибкая система дисконтирования</p>
+                    </div>
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Обширная, постоянно обновляемая аналитическая отчётность</p>
+                    </div>
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Совместимость с «АналитФАРМАЦИЕЙ»</p>
+                    </div>
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Автораспределение товара по потребностям и заявкам аптек</p>
+                    </div>
+                    <div class="advantages__item" data-animate>
+                        <span class="advantages__check">✓</span>
+                        <p>Быстрая доработка и разработка нового функционала по заявке</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ДОКУМЕНТЫ (заглушки) ==================== -->
+        <section class="section documents" id="documents">
+            <div class="container">
+                <div class="section__header" data-animate>
+                    <span class="section__label">Материалы</span>
+                    <h2 class="section__title">Документы</h2>
+                    <p class="section__desc">Руководства, инструкции и сопроводительная документация</p>
+                </div>
+                <div class="documents__grid">
+                    <!-- Заглушка 1 -->
+                    <a href="#" class="doc-card" data-animate>
+                        <div class="doc-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                        </div>
+                        <div class="doc-card__info">
+                            <h3>Руководство пользователя</h3>
+                            <p>Полное руководство по работе с системой «Колибри Аптека»</p>
+                            <span class="doc-card__meta">PDF · 2.4 МБ</span>
+                        </div>
+                        <span class="doc-card__download">↓</span>
+                    </a>
+                    <!-- Заглушка 2 -->
+                    <a href="#" class="doc-card" data-animate>
+                        <div class="doc-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                        </div>
+                        <div class="doc-card__info">
+                            <h3>Инструкция по установке</h3>
+                            <p>Пошаговое руководство по развёртыванию и первоначальной настройке</p>
+                            <span class="doc-card__meta">PDF · 1.1 МБ</span>
+                        </div>
+                        <span class="doc-card__download">↓</span>
+                    </a>
+                    <!-- Заглушка 3 -->
+                    <a href="#" class="doc-card" data-animate>
+                        <div class="doc-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                        </div>
+                        <div class="doc-card__info">
+                            <h3>Описание функционала</h3>
+                            <p>Обзор всех модулей и возможностей программы</p>
+                            <span class="doc-card__meta">PDF · 3.8 МБ</span>
+                        </div>
+                        <span class="doc-card__download">↓</span>
+                    </a>
+                    <!-- Заглушка 4 -->
+                    <a href="#" class="doc-card" data-animate>
+                        <div class="doc-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                            </svg>
+                        </div>
+                        <div class="doc-card__info">
+                            <h3>Лицензионное соглашение</h3>
+                            <p>Условия использования программного обеспечения</p>
+                            <span class="doc-card__meta">PDF · 0.3 МБ</span>
+                        </div>
+                        <span class="doc-card__download">↓</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ВИДЕОИНСТРУКЦИИ (заглушки) ==================== -->
+        <section class="section videos" id="videos">
+            <div class="container">
+                <div class="section__header" data-animate>
+                    <span class="section__label">Обучение</span>
+                    <h2 class="section__title">Видеоинструкции</h2>
+                    <p class="section__desc">Видеоматериалы для быстрого освоения системы</p>
+                </div>
+                <div class="videos__grid">
+                    <!-- Заглушка видео 1 -->
+                    <div class="video-card" data-animate>
+                        <div class="video-card__thumb">
+                            <div class="video-card__play">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>
+                            </div>
+                            <span class="video-card__duration">12:34</span>
+                        </div>
+                        <div class="video-card__body">
+                            <h3>Первый запуск и настройка</h3>
+                            <p>Начальная конфигурация программы после установки</p>
+                        </div>
+                    </div>
+                    <!-- Заглушка видео 2 -->
+                    <div class="video-card" data-animate>
+                        <div class="video-card__thumb video-card__thumb--2">
+                            <div class="video-card__play">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>
+                            </div>
+                            <span class="video-card__duration">08:15</span>
+                        </div>
+                        <div class="video-card__body">
+                            <h3>Загрузка накладных от поставщиков</h3>
+                            <p>Импорт данных в форматах txt, dbf, xml, xls</p>
+                        </div>
+                    </div>
+                    <!-- Заглушка видео 3 -->
+                    <div class="video-card" data-animate>
+                        <div class="video-card__thumb video-card__thumb--3">
+                            <div class="video-card__play">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>
+                            </div>
+                            <span class="video-card__duration">15:42</span>
+                        </div>
+                        <div class="video-card__body">
+                            <h3>Формирование отчётности</h3>
+                            <p>Аналитические отчёты и выгрузка для РосЗдравНадзора</p>
+                        </div>
+                    </div>
+                    <!-- Заглушка видео 4 -->
+                    <div class="video-card" data-animate>
+                        <div class="video-card__thumb video-card__thumb--4">
+                            <div class="video-card__play">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21"/></svg>
+                            </div>
+                            <span class="video-card__duration">10:08</span>
+                        </div>
+                        <div class="video-card__body">
+                            <h3>Инвентаризация и контроль остатков</h3>
+                            <p>Проведение инвентаризации и работа с просроченными препаратами</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== КОНТАКТЫ ==================== -->
+        <section class="section contacts" id="contacts">
+            <div class="container">
+                <div class="section__header" data-animate>
+                    <span class="section__label">Связь</span>
+                    <h2 class="section__title">Наши контакты</h2>
+                </div>
+                <div class="contacts__grid">
+                    <!-- Контакт 1 — с оригинального сайта -->
+                    <div class="contact-card" data-animate>
+                        <div class="contact-card__avatar">СА</div>
+                        <h3>Степанов Александр Павлович</h3>
+                        <ul class="contact-card__list">
+                            <li>
+                                <a href="tel:+79102111367">📞 8-910-211-13-67</a>
+                            </li>
+                            <li>
+                                <a href="mailto:k_soft@bk.ru">✉️ k_soft@bk.ru</a>
+                            </li>
+                            <li>
+                                <span>💬 Skype: k9102111367</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Контакт 2 — с оригинального сайта -->
+                    <div class="contact-card" data-animate>
+                        <div class="contact-card__avatar">НС</div>
+                        <h3>Нерябов Сергей Михайлович</h3>
+                        <ul class="contact-card__list">
+                            <li>
+                                <a href="tel:+79051583578">📞 8-905-158-35-78</a>
+                            </li>
+                            <li>
+                                <a href="mailto:9051583578@mail.ru">✉️ 9051583578@mail.ru</a>
+                            </li>
+                            <li>
+                                <span>💬 Skype: s_neryabov@mail.ru</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== ПОДВАЛ ==================== -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <p>© 2026 <strong>Колибри Аптека</strong> — Система управления аптечным бизнесом</p>
+            <p class="footer__platform">Платформа 1С:Предприятие 8</p>
+        </div>
+    </footer>
+
+    <!-- Скрипты в конце body — не блокируют отрисовку -->
+    <script src="js/main.js"></script>
+</body>
+</html>
