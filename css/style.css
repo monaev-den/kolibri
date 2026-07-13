@@ -12,6 +12,8 @@
    8. Секция «Товарные запасы»
    9. Секция «15 причин» (нумерованный список)
    10. Секция «Аналитическая панель»
+   10.1. Секция «Документы»
+   10.2. Секция «Видеоинструкции»
    11. Секция «Контакты» и форма
    12. Подвал и кнопка «наверх»
    13. Анимации reveal-on-scroll
@@ -833,6 +835,169 @@ img { max-width: 100%; display: block; }
 
 
 /* ------------------------------------------------------------
+   10.1. ДОКУМЕНТЫ
+   Сетка карточек-заглушек: иконка типа файла, размер, заголовок,
+   краткое описание и призыв к скачиванию. Карточки — ссылки
+   <a>, при реальном наполнении href указывает на файл документа.
+------------------------------------------------------------- */
+.docs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.doc-card {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 26px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: transform 0.3s var(--ease-out), border-color 0.3s, box-shadow 0.3s, background 0.3s;
+}
+.doc-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  background: var(--bg-warm);
+  box-shadow: var(--shadow-soft);
+}
+
+.doc-icon {
+  width: 48px; height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  margin-bottom: 18px;
+  flex-shrink: 0;
+}
+
+.doc-type {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.doc-card h3 {
+  font-size: 1.06rem;
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+
+.doc-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.doc-action {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+}
+
+.doc-action svg { transition: transform 0.25s var(--ease-out); }
+.doc-card:hover .doc-action svg { transform: translateY(2px); }
+
+
+/* ------------------------------------------------------------
+   10.2. ВИДЕОИНСТРУКЦИИ
+   Карточки с превью-заглушкой: градиентная плашка с иконкой
+   Play вместо реального кадра видео (чтобы не подключать
+   внешние изображения). При реальном наполнении фон .video-thumb
+   можно заменить на background-image с кадром ролика.
+------------------------------------------------------------- */
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.video-card {
+  display: block;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: transform 0.3s var(--ease-out), border-color 0.3s, box-shadow 0.3s;
+}
+.video-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-soft);
+}
+
+.video-thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Декоративные «волны» на превью — намёк на аудио/видеодорожку без реального кадра */
+.video-thumb::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.18) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+  opacity: 0.6;
+}
+
+.video-play {
+  position: relative;
+  z-index: 1;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--accent-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 3px; /* оптическая коррекция треугольника Play */
+  transition: transform 0.25s var(--ease-out), background 0.25s;
+}
+.video-card:hover .video-play {
+  transform: scale(1.08);
+  background: #FFFFFF;
+}
+
+.video-duration {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 1;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #FFFFFF;
+  background: rgba(36, 28, 22, 0.55);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.video-body { padding: 18px 20px 22px; }
+
+.video-body h3 {
+  font-size: 0.96rem;
+  line-height: 1.4;
+  margin-top: 8px;
+  color: var(--text-primary);
+}
+
+
+/* ------------------------------------------------------------
    11. КОНТАКТЫ
 ------------------------------------------------------------- */
 .contacts-grid {
@@ -1044,6 +1209,7 @@ img { max-width: 100%; display: block; }
   .dashboard-grid { grid-template-columns: 1fr 1fr; }
   .dboard-card-wide { grid-column: span 2; }
   .reasons-list { grid-template-columns: 1fr; }
+  .videos-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 860px) {
@@ -1072,6 +1238,8 @@ img { max-width: 100%; display: block; }
   .stock-grid { grid-template-columns: 1fr; }
   .dashboard-grid { grid-template-columns: 1fr; }
   .dboard-card-wide { grid-column: span 1; }
+  .docs-grid { grid-template-columns: 1fr; }
+  .videos-grid { grid-template-columns: repeat(2, 1fr); }
   .section { padding-block: 84px; }
   .hero { padding-top: 140px; min-height: auto; }
   .dash-float { position: static; margin-top: -16px; margin-left: 16px; animation: none; }
@@ -1083,4 +1251,5 @@ img { max-width: 100%; display: block; }
   .hero-stats { gap: 24px; }
   .contact-form { padding: 26px; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
+  .videos-grid { grid-template-columns: 1fr; }
 }
