@@ -1,2 +1,511 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Колибри Аптека — система управления аптечным бизнесом на 1С</title>
+  <meta name="description" content="«Колибри Аптека» — программа управления товарными запасами, продажами и отчётностью для аптек и аптечных сетей на платформе 1С:Предприятие 8.">
 
-test
+  <!-- ============ ШРИФТЫ ============
+       Manrope — закруглённый, дружелюбный дисплейный шрифт для заголовков,
+       снимает «казённость» темы учётной системы.
+       Inter — нейтральный текстовый шрифт для основного контента. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ======================================================
+       ФОНОВЫЙ ДЕКОР: мягкие тёплые пятна-«блики» на белом —
+       вместо инженерной сетки здесь более органичная, «фарма»
+       атмосфера: округлые градиентные пятна, лёгкая текстура точек.
+       ====================================================== -->
+  <div class="bg-dots" aria-hidden="true"></div>
+  <div class="bg-blob bg-blob-1" aria-hidden="true"></div>
+  <div class="bg-blob bg-blob-2" aria-hidden="true"></div>
+
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ======================================================
+       ШАПКА / НАВИГАЦИЯ
+       ====================================================== -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a href="#top" class="logo" aria-label="Колибри Аптека — на главную">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="34" height="34" fill="none">
+            <circle cx="16" cy="16" r="15" fill="var(--accent)"/>
+            <path d="M11 20C11 15 13 11 17 9C15.5 12 15 15 16 18C18 15.5 21 14.5 23 15C21 12.5 21.5 9.5 24 8C22 13 20 16.5 15 20.5C13.5 21.5 12 21.5 11 20Z" fill="#fff"/>
+          </svg>
+        </span>
+        <span class="logo-text">Колибри<span class="logo-accent">Аптека</span></span>
+      </a>
+
+      <nav class="main-nav" id="mainNav" aria-label="Основная навигация">
+        <a href="#about" class="nav-link">О программе</a>
+        <a href="#stock" class="nav-link">Товарные запасы</a>
+        <a href="#reasons" class="nav-link">Преимущества</a>
+        <a href="#dashboard" class="nav-link">Аналитика</a>
+        <a href="#contacts" class="nav-link nav-cta">Связаться</a>
+      </nav>
+
+      <button class="burger" id="burgerBtn" aria-label="Открыть меню" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ======================================================
+         ГЕРОЙ-ЭКРАН
+         ====================================================== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+
+        <div class="hero-copy" data-reveal>
+          <p class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            На платформе 1С:Предприятие 8
+          </p>
+          <h1 id="hero-title" class="hero-title">
+            Управляйте аптекой,<br>
+            <span class="text-accent">а не бумагами и остатками</span>
+          </h1>
+          <p class="hero-lead">
+            «Колибри Аптека» — программа для аптек и аптечных сетей: полный
+            контроль товарных запасов, продаж, сроков годности и отчётности
+            в едином удобном интерфейсе.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contacts" class="btn btn-primary">
+              Получить консультацию
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="#reasons" class="btn btn-ghost">15 причин выбрать нас</a>
+          </div>
+
+          <dl class="hero-stats">
+            <div class="hero-stat">
+              <dt>40+</dt>
+              <dd>поставщиков с автозагрузкой накладных</dd>
+            </div>
+            <div class="hero-stat">
+              <dt>1С:8</dt>
+              <dd>надёжная и распространённая платформа</dd>
+            </div>
+            <div class="hero-stat">
+              <dt>24/7</dt>
+              <dd>контроль сроков годности и остатков</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- СИГНАТУРНЫЙ ЭЛЕМЕНТ: карточка аналитической панели —
+             отражает суть продукта: контроль остатков, сроков годности,
+             автоматизация закупок. -->
+        <div class="hero-visual" data-reveal aria-hidden="true">
+          <div class="dash-card">
+            <div class="dash-card-head">
+              <span class="dash-title">Панель аптеки · сегодня</span>
+              <span class="dash-live"><span class="dash-live-dot"></span>Онлайн</span>
+            </div>
+
+            <div class="dash-body">
+              <!-- Мини-график динамики продаж -->
+              <div class="dash-chart-wrap">
+                <svg class="dash-chart" viewBox="0 0 300 110" fill="none">
+                  <defs>
+                    <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.35"/>
+                      <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path class="dash-chart-area" d="M0 80 L30 68 L60 74 L90 50 L120 58 L150 34 L180 44 L210 24 L240 30 L270 12 L300 20 L300 110 L0 110 Z" fill="url(#chartFill)"/>
+                  <path class="dash-chart-line" d="M0 80 L30 68 L60 74 L90 50 L120 58 L150 34 L180 44 L210 24 L240 30 L270 12 L300 20" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle class="dash-chart-dot" cx="300" cy="20" r="4.5" fill="var(--accent)"/>
+                </svg>
+                <div class="dash-chart-labels">
+                  <span>Продажи за неделю</span>
+                  <span class="dash-chart-value">+18,4%</span>
+                </div>
+              </div>
+
+              <!-- Индикаторы остатков / сроков годности -->
+              <div class="dash-metrics">
+                <div class="dash-metric">
+                  <div class="dash-metric-head">
+                    <span>Остатки на складе</span>
+                    <span class="dash-metric-num">92%</span>
+                  </div>
+                  <div class="dash-bar"><div class="dash-bar-fill" style="width:92%"></div></div>
+                </div>
+                <div class="dash-metric">
+                  <div class="dash-metric-head">
+                    <span>Товар с истекающим сроком</span>
+                    <span class="dash-metric-num dash-metric-warn">14</span>
+                  </div>
+                  <div class="dash-bar"><div class="dash-bar-fill dash-bar-warn" style="width:22%"></div></div>
+                </div>
+                <div class="dash-metric">
+                  <div class="dash-metric-head">
+                    <span>Обработано накладных</span>
+                    <span class="dash-metric-num">128</span>
+                  </div>
+                  <div class="dash-bar"><div class="dash-bar-fill" style="width:76%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Плавающая мини-карточка «подтверждение» -->
+          <div class="dash-float">
+            <span class="dash-float-icon">✓</span>
+            <div>
+              <p class="dash-float-title">Заявка поставщику</p>
+              <p class="dash-float-sub">сформирована автоматически</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <a href="#about" class="scroll-hint" aria-label="Прокрутить вниз">
+        <span>Листайте</span>
+        <svg width="14" height="20" viewBox="0 0 14 20" fill="none"><rect x="1" y="1" width="12" height="18" rx="6" stroke="currentColor" stroke-width="1.3"/><circle class="scroll-hint-dot" cx="7" cy="6" r="1.6" fill="currentColor"/></svg>
+      </a>
+    </section>
+
+
+    <!-- ======================================================
+         О ПРОГРАММЕ
+         ====================================================== -->
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">О программе</p>
+          <h2 id="about-title" class="section-title">Полная автоматизация аптечного бизнеса</h2>
+        </div>
+
+        <div class="about-grid">
+          <p class="about-lead" data-reveal>
+            Внедрение системы управления аптечным бизнесом «Колибри Аптека»
+            увеличит эффективность работы вашей аптеки, сократит затраты на
+            регистрацию и обработку поступающей информации, повысит
+            производительность труда и качество обслуживания клиентов,
+            а также позволит объективно оценивать работу персонала и
+            оперативно контролировать финансовые и материальные потоки.
+          </p>
+
+          <div class="about-facts" data-reveal>
+            <div class="fact-card">
+              <span class="fact-num">1С:8</span>
+              <span class="fact-label">Работает на самой известной и распространённой платформе 1С:Предприятие 8</span>
+            </div>
+            <div class="fact-card">
+              <span class="fact-num">100%</span>
+              <span class="fact-label">Спроектирована с учётом требований реальных аптек и аптечных сетей</span>
+            </div>
+            <div class="fact-card">
+              <span class="fact-num">&lt;1 дня</span>
+              <span class="fact-label">Быстрое развёртывание и первоначальная настройка программы</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         РАБОТА С ТОВАРНЫМИ ЗАПАСАМИ
+         ====================================================== -->
+    <section class="section stock" id="stock" aria-labelledby="stock-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Ключевой модуль</p>
+          <h2 id="stock-title" class="section-title">Работа с товарными запасами</h2>
+          <p class="section-sub">Основной и самый обширный функционал программы для любого аптечного предприятия</p>
+        </div>
+
+        <div class="stock-grid">
+
+          <article class="stock-card" data-reveal>
+            <div class="stock-index">01</div>
+            <h3>Приход и хранение товара</h3>
+            <p>Регистрация поступлений, размещение и учёт товара на складе и в торговом зале.</p>
+          </article>
+
+          <article class="stock-card" data-reveal>
+            <div class="stock-index">02</div>
+            <h3>Расход товара</h3>
+            <p>Продажи, списания, перемещения между точками — всё фиксируется и остаётся прозрачным.</p>
+          </article>
+
+          <article class="stock-card" data-reveal>
+            <div class="stock-index">03</div>
+            <h3>Отчётность и аналитика</h3>
+            <p>Аналитические и маркетинговые исследования на основе накопленных данных о продажах.</p>
+          </article>
+
+          <article class="stock-card" data-reveal>
+            <div class="stock-index">04</div>
+            <h3>Обмен данными с бухгалтерией</h3>
+            <p>Синхронизация товарного и финансового учёта без двойного ввода информации.</p>
+          </article>
+
+          <article class="stock-card" data-reveal>
+            <div class="stock-index">05</div>
+            <h3>Инвентаризация запасов</h3>
+            <p>Проведение инвентаризации существующих товарных запасов с фиксацией расхождений.</p>
+          </article>
+
+          <article class="stock-card" data-reveal>
+            <div class="stock-index">06</div>
+            <h3>Заявки поставщикам</h3>
+            <p>Составление заявок поставщикам на основании реальной товарной потребности аптеки.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         15 ПРИЧИН ВЫБРАТЬ ПРОГРАММУ
+         ====================================================== -->
+    <section class="section reasons" id="reasons" aria-labelledby="reasons-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Почему выбирают нас</p>
+          <h2 id="reasons-title" class="section-title">Причины выбрать программу «Колибри Аптека»</h2>
+        </div>
+
+        <ol class="reasons-list">
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">01</span>
+            <p>Работает на самой известной и распространённой платформе 1С:Предприятие 8</p>
+          </li>
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">02</span>
+            <p>Спроектирована с учётом требований реальных аптек и аптечных сетей, включает все преимущества программ-аналогов</p>
+          </li>
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">03</span>
+            <p>Быстрое развёртывание и первоначальная настройка сокращают потери рабочего времени при внедрении</p>
+          </li>
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">04</span>
+            <p>Удобный и понятный интерфейс программы для сотрудников любого уровня подготовки</p>
+          </li>
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">05</span>
+            <p>Загружаются накладные более чем от 40 поставщиков в любом формате: txt, dbf, xml, xls и других</p>
+          </li>
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">06</span>
+            <p>Автоматическое обновление номенклатурной базы: новый товар, налоговые ставки, признак ЖВ</p>
+          </li>
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">07</span>
+            <p>Ведение учёта по нескольким юридическим лицам и различным объектам налогообложения</p>
+          </li>
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">08</span>
+            <p>Контроль препаратов с остаточным или просроченным сроком годности, за фальсифицированными сериями</p>
+          </li>
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">09</span>
+            <p>Оперативная подготовка данных для мониторинга цен с выгрузкой на сайт РосЗдравНадзора</p>
+          </li>
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">10</span>
+            <p>Возможность резервировать товар для клиента</p>
+          </li>
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">11</span>
+            <p>Разработана гибкая система дисконтирования</p>
+          </li>
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">12</span>
+            <p>Обширный, постоянно обновляющийся объём аналитической отчётности</p>
+          </li>
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">13</span>
+            <p>Формирование заявок поставщикам на основании товарной потребности. Совместимость с «АналитФАРМАЦИЕЙ»</p>
+          </li>
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">14</span>
+            <p>Автоматическое распределение товара от поставщиков на основании потребностей и заявок аптек</p>
+          </li>
+          <li class="reason-item" data-reveal>
+            <span class="reason-num">15</span>
+            <p>Быстрая и оперативная доработка существующего и разработка нового функционала по заявке заказчика</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         АНАЛИТИЧЕСКАЯ ПАНЕЛЬ (доп. визуализация возможностей)
+         ====================================================== -->
+    <section class="section dashboard" id="dashboard" aria-labelledby="dashboard-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">Аналитика в реальном времени</p>
+          <h2 id="dashboard-title" class="section-title">Все данные — в одном окне</h2>
+          <p class="section-sub">Оперативный контроль финансовых и материальных потоков для принятия верных решений</p>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="dboard-card dboard-card-wide" data-reveal>
+            <h3>Мониторинг сроков годности</h3>
+            <p class="dboard-text">Контроль препаратов с остаточным или истёкшим сроком годности и фальсифицированных серий — в реальном времени.</p>
+            <div class="expiry-rows">
+              <div class="expiry-row">
+                <span class="expiry-name">Парацетамол 500мг №20</span>
+                <span class="expiry-badge expiry-badge-ok">92 дня</span>
+              </div>
+              <div class="expiry-row">
+                <span class="expiry-name">Ибупрофен гель 5% 50г</span>
+                <span class="expiry-badge expiry-badge-warn">27 дней</span>
+              </div>
+              <div class="expiry-row">
+                <span class="expiry-name">Витамин D3 капли 30мл</span>
+                <span class="expiry-badge expiry-badge-crit">6 дней</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dboard-card" data-reveal>
+            <h3>Поставщики</h3>
+            <p class="dboard-num">40<span>+</span></p>
+            <p class="dboard-text">форматов накладных загружаются автоматически: txt, dbf, xml, xls</p>
+          </div>
+
+          <div class="dboard-card" data-reveal>
+            <h3>Юридические лица</h3>
+            <p class="dboard-num">∞</p>
+            <p class="dboard-text">учёт по нескольким юрлицам и объектам налогообложения одновременно</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================
+         КОНТАКТЫ
+         ====================================================== -->
+    <section class="section contacts" id="contacts" aria-labelledby="contacts-title">
+      <div class="container contacts-grid">
+
+        <div class="contacts-copy" data-reveal>
+          <p class="eyebrow">Контакты</p>
+          <h2 id="contacts-title" class="section-title">Обсудим внедрение «Колибри Аптека» в вашей сети</h2>
+          <p class="section-sub">
+            Свяжитесь с нами удобным способом — расскажем о возможностях
+            программы и поможем рассчитать стоимость внедрения.
+          </p>
+
+          <div class="contact-persons">
+            <div class="contact-person">
+              <p class="person-name">Степанов Александр Павлович</p>
+              <ul class="person-details">
+                <li><a href="tel:+79102111367">8-910-211-13-67</a></li>
+                <li><a href="mailto:k_soft@bk.ru">k_soft@bk.ru</a></li>
+                <li><span>Skype: k9102111367</span></li>
+              </ul>
+            </div>
+            <div class="contact-person">
+              <p class="person-name">Нерябов Сергей Михайлович</p>
+              <ul class="person-details">
+                <li><a href="tel:+79051583578">8-905-158-35-78</a></li>
+                <li><a href="mailto:9051583578@mail.ru">9051583578@mail.ru</a></li>
+                <li><span>Skype: s_neryabov@mail.ru</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="price-links">
+            <a href="http://kolibrisoft.ru/prices/Price_ST_Kursk.xls" class="price-link">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 2H11L14 5V16H4V2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M11 2V5H14" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+              Прайс-лист Курской области
+            </a>
+            <a href="http://kolibrisoft.ru/prices/Price_ST.xls" class="price-link">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 2H11L14 5V16H4V2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M11 2V5H14" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+              Прайс-лист других регионов РФ
+            </a>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contactForm" data-reveal novalidate>
+          <h3 class="form-title">Оставить заявку</h3>
+
+          <label class="form-field">
+            <span>Имя</span>
+            <input type="text" name="name" placeholder="Как к вам обращаться" required>
+          </label>
+
+          <label class="form-field">
+            <span>Телефон или e-mail</span>
+            <input type="text" name="contact" placeholder="+7 ___ ___-__-__ или почта" required>
+          </label>
+
+          <label class="form-field">
+            <span>Аптека / сеть</span>
+            <textarea name="message" rows="3" placeholder="Кратко о вашей аптеке или сети"></textarea>
+          </label>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            Отправить заявку
+          </button>
+
+          <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================
+       ПОДВАЛ
+       ====================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="26" height="26" fill="none">
+            <circle cx="16" cy="16" r="15" fill="var(--accent)"/>
+            <path d="M11 20C11 15 13 11 17 9C15.5 12 15 15 16 18C18 15.5 21 14.5 23 15C21 12.5 21.5 9.5 24 8C22 13 20 16.5 15 20.5C13.5 21.5 12 21.5 11 20Z" fill="#fff"/>
+          </svg>
+        </span>
+        <div>
+          <p class="footer-company">Колибри Аптека</p>
+          <p class="footer-meta">Система управления аптечным бизнесом на 1С:Предприятие 8</p>
+        </div>
+      </div>
+
+      <nav class="footer-nav" aria-label="Навигация по разделам">
+        <a href="#about">О программе</a>
+        <a href="#stock">Товарные запасы</a>
+        <a href="#reasons">Преимущества</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <p class="footer-copy">© <span id="year"></span> Колибри Аптека. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTopBtn" aria-label="Наверх">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 15V3M9 3L4 8M9 3L14 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
